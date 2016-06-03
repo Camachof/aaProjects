@@ -1,0 +1,9 @@
+<h1>All bands!</h1>
+
+<body>
+  <ul>
+  <% @band.each do |band| %>
+    <li> <%= band.name %> </li>
+  <% end %>
+  </ul>
+</body>

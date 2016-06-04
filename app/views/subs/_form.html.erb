@@ -1,0 +1,23 @@
+<% edit = @sub.persisted? %>
+<% action = edit ? sub_url(@sub) : subs_url %>
+<% method = edit ? "PATCH" : "POST" %>
+<% button_text = edit ? "Update Sub!" : "Create Sub!" %>
+
+<ul>
+<% @sub.errors.full_messages.each do |message| %>
+  <li><%= message %></li>
+<% end %>
+</ul>
+
+<form action="<%= action %>" method="post">
+    <%= method_tag(method) %>
+    <%= auth_token %>
+
+    <label for="sub_title">Title:</label><br>
+    <input type="text" name="sub[title]" value="<%= @sub.title %>" id="sub_title">
+
+    <label for="sub_description">Description:</label><br>
+    <input type="text" name="sub[description]" value="<%= @sub.description %>" id="sub_description"><br>
+
+    <%= submit_button(button_text) %>
+</form>

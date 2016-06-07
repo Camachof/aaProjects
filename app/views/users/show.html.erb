@@ -1,0 +1,10 @@
+<h2> <%= @user.username + "'s Profile" %> </h2>
+<h3></h3><%= @user.username + "'s Goals:" %></h3>
+<br>
+
+<% @user.goals.each do |goal| %>
+<% unless goal.confidential  %>
+  <%= link_to goal.title, goal_url(goal) %>
+  <br>
+  <% end %>
+<% end %>

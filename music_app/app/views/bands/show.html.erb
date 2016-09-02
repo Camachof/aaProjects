@@ -1,0 +1,12 @@
+<h1>This is the show page</h1>
+
+<%= @band.name %>
+<br><br>
+
+<%= button_to "Delete Band!", band_url(@band) , method: "delete" %>
+<br>
+
+<%= link_to "Edit Band!", edit_band_url(@band)%>
+<br>
+
+<%= link_to "All Bands!", bands_url%>

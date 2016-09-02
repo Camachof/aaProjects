@@ -1,0 +1,8 @@
+<h1>Your Goals</h1>
+
+<% @goals.each do |goal| %>
+  <p>Title: <%= goal.title %></p>
+  <p>Details: <%= goal.body %></p>
+  <p>Visibility: <%= goal.confidential %></p>
+  <p>Finished?: <%= goal.status %></p>
+<% end %>

@@ -1,0 +1,31 @@
+<% post = @post || Post.new %>
+<% edit = post.persisted? %>
+<% sub_id = @sub ? @sub.id : nil %>
+<% action = edit ? post_url(post) : posts_url %>
+<% method = edit ? "PATCH" : "POST" %>
+<% button_text = edit ? "Update" : "Post" %>
+
+<form action="<%= action %>?current_sub_id=<%= sub_id %>" method="post">
+  <%= method_tag(method) %>
+  <%= auth_token %>
+
+  <label for="post_title">Title</label><br>
+  <input type="text" name="post[title]" value="<%= post.title %>"><br>
+
+  <textarea name="post[content]" rows="8" cols="40"><%= post.content %></textarea>
+  <br>
+
+  <input type="hidden" name="post[sub_ids][]" value="">
+
+  <% @subs.each do |sub| %>
+    <input type="checkbox"
+      name="post[sub_ids][]"
+      value="<%= sub.id %>"
+      id="sub_<%= sub.id %>"
+      <%= "selected" if post.sub_ids.include?(sub.id) %>
+      >
+      <label for="sub_<%= sub.id %>"><%= sub.title %></label>
+  <% end %>
+  <br>
+  <%= submit_button(button_text) %>
+</form>
